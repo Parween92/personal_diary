@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+body {
+  background-color: white;
+  --primary: #A855F7; 
+  --secondary: #3B82F6; 
+  --accent: #c4b5fd; 
+  --light: #93c5fd; 
+  --text: #ffffff; 
+  --hover: #7c3aed;
+}
