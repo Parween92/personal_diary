@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "vite preview --port $PORT --host 0.0.0.0"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.14.3",
@@ -30,5 +31,9 @@
     "globals": "^16.3.0",
     "tailwindcss": "^4.1.11",
     "vite": "^7.0.4"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }

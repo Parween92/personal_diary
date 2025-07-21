@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: personal-diary-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run serve
+    staticPublishPath: ./dist
