@@ -4,7 +4,6 @@ import { getPostById } from "../components/AllRequest";
 import { BiArrowBack } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
 
-
 const categoryIcons = {
   Adventure: "🧗‍♂️",
   Relaxation: "🌴",
@@ -42,9 +41,9 @@ export default function PostDetails() {
   if (!post) return null;
 
   return (
-    <div className="m-auto my-12 w-3xl">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-6 sm:my-8 lg:my-12">
       <div
-        className="text-white p-8 rounded-lg relative flex flex-col justify-between"
+        className="text-white p-4 sm:p-6 lg:p-8 rounded-lg relative flex flex-col justify-between shadow-lg"
         style={{
           background:
             "linear-gradient(to right, rgba(168, 85, 247, 0.7), rgba(59, 130, 246, 0.7))",
@@ -52,33 +51,39 @@ export default function PostDetails() {
       >
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold italic text-text">
-              {post.title}
-            </h1>
+            <h1 className="text-lg font-bold italic text-text">{post.title}</h1>
             <button
               onClick={() => navigate(`/posts/${id}/edit`)}
-              className="hover:bg-hover flex items-center gap-2 font-bold bg-primary text-white px-4 py-2 rounded"
+              className="hover:bg-hover flex items-center justify-center gap-2 font-bold bg-primary
+               text-white px-4 py-2 rounded transition-colors duration-200 self-start"
             >
               <FiEdit size={18} />
-              Edit
+              <span className="hidden sm:inline">Edit</span>
             </button>
           </div>
-          <h2 className="text-xl font-bold text-accent flex items-center gap-2">
-            <span>by {post.author}</span>
-            <span>
+
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <h2 className="text-lg sm:text-lg font-bold text-accent">
+              by {post.author}
+            </h2>
+            <span className="text-sm sm:text-base text-accent">
               📋Post is <strong>{post.status}</strong>
             </span>
-          </h2>
+          </div>
 
-          <img
-            src={post.cover}
-            alt={post.title}
-            className="w-full h-80 object-cover rounded mb-4"
-          />
+          <div className="w-full">
+            <img
+              src={post.cover}
+              alt={post.title}
+              className="w-full h-48 sm:h-64 lg:h-80 object-cover rounded"
+            />
+          </div>
 
-          <p className="text-lg text-text leading-relaxed">{post.content}</p>
+          <p className="text-base sm:text-lg text-text leading-relaxed">
+            {post.content}
+          </p>
 
-          <p className="text-lg text-accent">
+          <p className="text-base sm:text-lg text-accent">
             Category:{" "}
             {post.category ? (
               <>
@@ -90,10 +95,12 @@ export default function PostDetails() {
           </p>
         </div>
 
-        <div className="flex gap-4 mt-8">
+        <div className="flex gap-4 mt-6 sm:mt-8">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 bg-[var(--secondary)] hover:bg-[var(--primary)] text-white px-4 py-2 rounded font-bold"
+            className="flex items-center justify-center gap-2 bg-[var(--secondary)] 
+            hover:bg-[var(--primary)] text-white px-4 py-2 rounded font-bold 
+            transition-colors duration-200 w-full sm:w-auto"
           >
             <BiArrowBack size={20} />
             Go back

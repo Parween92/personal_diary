@@ -101,121 +101,144 @@ export default function PostEdit() {
   if (!post) return null;
 
   return (
-    <form
-      className="m-auto my-12 border-1 border-[var(--primary)] p-6 rounded-lg w-3xl"
-      onSubmit={handleSubmit}
-    >
-      <h2 className="mb-4 text-xl font-bold text-gray-600">Edit post</h2>
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <form
+        className="my-6 sm:my-8 lg:my-12 border border-[var(--primary)] p-4 sm:p-6 lg:p-8 rounded-lg
+         bg-white shadow-lg"
+        onSubmit={handleSubmit}
+      >
+        <h2 className="mb-4 sm:mb-6 text-xl sm:text-2xl font-bold text-gray-600">
+          Edit post
+        </h2>
 
-      {error && <p className="text-[var(--primary)]">{error}</p>}
+        {error && <p className="text-[var(--primary)] mb-4">{error}</p>}
 
-      <input
-        name="author"
-        value={formData.author}
-        onChange={handleChange}
-        placeholder="Autor*in"
-        className="w-full border border-gray-400 text-gray-600 px-3 py-2 rounded"
-      />
-      <input
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        placeholder="Titel"
-        required
-        className="mt-4 border-gray-400 text-gray-600 w-full border px-3 py-2 rounded"
-      />
-      <textarea
-        name="content"
-        value={formData.content}
-        onChange={handleChange}
-        placeholder="Inhalt"
-        required
-        rows={4}
-        className="mt-4 w-full border-gray-400 text-gray-600 border px-3 py-2 rounded"
-      />
-      <input
-        name="cover"
-        value={formData.cover}
-        onChange={handleChange}
-        placeholder="Bild-URL"
-        required
-        className="mt-4 w-full border text-gray-600 border-gray-400 px-3 py-2 rounded"
-      />
-
-      {formData.cover && (
-        <div className="mt-4">
-          <img
-            src={formData.cover}
-            alt="Preview"
-            className="w-full h-52 text-gray-600 object-cover border border-gray-400 rounded"
+        <div className="space-y-4">
+          <input
+            name="author"
+            value={formData.author}
+            onChange={handleChange}
+            placeholder="Autor*in"
+            className="w-full border border-gray-400 text-gray-600 px-3 py-2 rounded
+             focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
           />
+
+          <input
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="Titel"
+            required
+            className="w-full border border-gray-400 text-gray-600 px-3 py-2 rounded 
+            focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          />
+
+          <textarea
+            name="content"
+            value={formData.content}
+            onChange={handleChange}
+            placeholder="Inhalt"
+            required
+            rows={4}
+            className="w-full border border-gray-400 text-gray-600 px-3 py-2 rounded 
+            focus:outline-none focus:ring-2 focus:ring-[var(--primary)] min-h-[120px] resize-vertical"
+          />
+
+          <input
+            name="cover"
+            value={formData.cover}
+            onChange={handleChange}
+            placeholder="Bild-URL"
+            required
+            className="w-full border border-gray-400 text-gray-600 px-3 py-2 rounded 
+            focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          />
+
+          {formData.cover && (
+            <div className="w-full">
+              <img
+                src={formData.cover}
+                alt="Preview"
+                className="w-full max-w-md mx-auto h-40 sm:h-52 lg:h-64 object-cover border border-gray-400 rounded"
+              />
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor="category"
+                className="text-gray-600 block font-bold mb-2"
+              >
+                Category
+              </label>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+                className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 rounded
+                 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+              >
+                <option value="">-- Select Category --</option>
+                {Object.entries(categoryIcons).map(([cat, icon]) => (
+                  <option key={cat} value={cat}>
+                    {icon} {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label
+                htmlFor="status"
+                className="text-gray-600 block font-bold mb-2"
+              >
+                Status
+              </label>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                required
+                className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 rounded focus:outline-none 
+                focus:ring-2 focus:ring-[var(--primary)]"
+              >
+                <option value="">-- Select Status --</option>
+                <option value="Draft">Draft</option>
+                <option value="Published">Published</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="flex items-center justify-center gap-2 bg-[var(--secondary)] hover:bg-[var(--primary)]
+               text-white px-4 py-2 rounded font-bold transition-colors duration-200 w-full sm:w-auto"
+            >
+              <BiArrowBack size={20} />
+              Go back
+            </button>
+
+            <button
+              type="submit"
+              className="flex items-center justify-center gap-2 bg-[var(--primary)] px-4 py-2
+               hover:bg-[var(--secondary)] text-white rounded font-bold transition-colors duration-200 w-full sm:w-auto"
+            >
+              <MdSave size={20} />
+              Save
+            </button>
+          </div>
+
+          {success && (
+            <p className="text-[var(--primary)] text-lg sm:text-xl font-semibold mt-4 text-center">
+              Post updated successfully!
+            </p>
+          )}
         </div>
-      )}
-
-      <div className="flex gap-2 items-center mt-5 ">
-        <label
-          htmlFor="category"
-          className="text-gray-600 block font-bold mb-1"
-        >
-          Category
-        </label>
-        <select
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-          required
-          className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 rounded"
-        >
-          <option value="">-- Select Category --</option>
-          {Object.entries(categoryIcons).map(([cat, icon]) => (
-            <option key={cat} value={cat}>
-              {icon} {cat}
-            </option>
-          ))}
-        </select>
-        <label
-          htmlFor="status"
-          className="ml-4 block font-bold text-gray-600 mb-1"
-        >
-          Status
-        </label>
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-          required
-          className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 rounded"
-        >
-          <option value="">-- Select Status --</option>
-          <option value="Draft">Draft</option>
-          <option value="Published">Published</option>
-        </select>
-      </div>
-
-      <div className="flex gap-4 mt-8">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 bg-[var(--secondary)] hover:bg-[var(--primary)] text-white px-4 py-2 rounded font-bold"
-        >
-          <BiArrowBack size={20} />
-          Go back
-        </button>
-
-        <button
-          type="submit"
-          className="flex gap-2 font-bold items-center bg-[var(--primary)] px-4 py-2 hover:bg-[var(--secondary)] text-white rounded"
-        >
-          <MdSave size={20} />
-          Save
-        </button>
-      </div>
-
-      {success && (
-        <p className="text-[var(--primary)] text-xl font-semibold mb-2 mt-4">
-          Post updated successfully!
-        </p>
-      )}
-    </form>
+      </form>
+    </div>
   );
 }

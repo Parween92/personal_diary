@@ -68,96 +68,123 @@ export default function PostForm({ onSuccess }) {
   };
 
   return (
-    <form className="m-auto my-12 w-3xl" onSubmit={handleSubmit}>
-      <h2 className="mb-4 text-xl font-bold text-gray-600">Create new post</h2>
-
-      {error && <p className="text-[var(--primary)]">{error}</p>}
-
-      <input
-        name="author"
-        value={formData.author}
-        onChange={handleChange}
-        placeholder="Autor*in"
-        className="w-full border border-gray-400 px-3 py-2 rounded"
-      />
-      <input
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        placeholder="Titel"
-        required
-        className="mt-4 border-gray-400 w-full border px-3 py-2 rounded"
-      />
-      <textarea
-        name="content"
-        value={formData.content}
-        onChange={handleChange}
-        placeholder="Inhalt"
-        required
-        rows={4}
-        className="mt-4 w-full border-gray-400 border px-3 py-2 rounded"
-      />
-      <input
-        name="cover"
-        value={formData.cover}
-        onChange={handleChange}
-        placeholder="Bild-URL"
-        required
-        className="mt-4 w-full border border-gray-400 px-3 py-2 rounded"
-      />
-      <div className="flex gap-2 items-center mt-5 ">
-        <label
-          htmlFor="category"
-          className="text-gray-600 block font-bold mb-1"
-        >
-          Category
-        </label>
-        <select
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-          required
-          className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 rounded"
-        >
-          <option value="">-- Select Category --</option>
-          {Object.entries(categoryIcons).map(([cat, icon]) => (
-            <option key={cat} value={cat}>
-              {icon} {cat}
-            </option>
-          ))}
-        </select>
-        <label
-          htmlFor="status"
-          className="ml-4 block font-bold text-gray-600  mb-1"
-        >
-          Status
-        </label>
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-          required
-          className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 rounded"
-        >
-          <option value="">-- Select Status --</option>
-          <option value="Draft">Draft</option>
-          <option value="Published">Published</option>
-        </select>
-      </div>
-      <button
-        onClick={() => navigate(-1)}
-        type="submit"
-        className="flex gap-2 font-bold items-center bg-[var(--primary)] hover:bg-[var(--secondary)] mt-8 mb-5 px-4 py-2 text-white rounded"
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <form
+        className="my-6 sm:my-8 lg:my-12 bg-white border border-[var(--primary)] p-4 sm:p-6 lg:p-8 
+      rounded-lg shadow-lg"
+        onSubmit={handleSubmit}
       >
-        {" "}
-        <MdSave size={20} />
-        Save
-      </button>
-      {success && (
-        <p className="text-accent text-xl font-semibold mb-2">
-          Post saved successfully!
-        </p>
-      )}
-    </form>
+        <h2 className="mb-4 sm:mb-6 text-xl sm:text-2xl font-bold text-gray-600">
+          Create new post
+        </h2>
+
+        {error && <p className="text-[var(--primary)] mb-4">{error}</p>}
+
+        <div className="space-y-4">
+          <input
+            name="author"
+            value={formData.author}
+            onChange={handleChange}
+            placeholder="Autor*in"
+            className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 
+            focus:ring-[var(--primary)]"
+          />
+
+          <input
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="Titel"
+            required
+            className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none 
+            focus:ring-2 focus:ring-[var(--primary)]"
+          />
+
+          <textarea
+            name="content"
+            value={formData.content}
+            onChange={handleChange}
+            placeholder="Inhalt"
+            required
+            rows={4}
+            className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none 
+            focus:ring-2 focus:ring-[var(--primary)] min-h-[120px] resize-vertical"
+          />
+
+          <input
+            name="cover"
+            value={formData.cover}
+            onChange={handleChange}
+            placeholder="Bild-URL"
+            required
+            className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none
+             focus:ring-2 focus:ring-[var(--primary)]"
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor="category"
+                className="text-gray-600 block font-bold mb-2"
+              >
+                Category
+              </label>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+                className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 
+                rounded focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+              >
+                <option value="">-- Select Category --</option>
+                {Object.entries(categoryIcons).map(([cat, icon]) => (
+                  <option key={cat} value={cat}>
+                    {icon} {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label
+                htmlFor="status"
+                className="text-gray-600 block font-bold mb-2"
+              >
+                Status
+              </label>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                required
+                className="text-[var(--primary)] w-full border border-gray-400 px-3 py-2 rounded 
+                focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+              >
+                <option value="">-- Select Status --</option>
+                <option value="Draft">Draft</option>
+                <option value="Published">Published</option>
+              </select>
+            </div>
+          </div>
+
+          <button
+            onClick={() => navigate(-1)}
+            type="submit"
+            className="flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--secondary)]
+             px-4 py-2 text-white rounded font-bold transition-colors duration-200 w-full sm:w-auto mt-6"
+          >
+            <MdSave size={20} />
+            Save
+          </button>
+
+          {success && (
+            <p className="text-accent text-lg sm:text-xl font-semibold text-center mt-4">
+              Post saved successfully!
+            </p>
+          )}
+        </div>
+      </form>
+    </div>
   );
 }

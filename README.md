@@ -1,12 +1,29 @@
-# React + Vite
+# Your Personal Diary
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ein modernes, responsives Personal Diary Frontend, gebaut mit React und Vite. Diese Anwendung ermöglicht es Benutzern, persönliche Tagebucheinträge zu erstellen, zu bearbeiten und zu verwalten.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vollständig responsive** - Optimiert für Desktop, Tablet und Mobile
+- **Moderne UI** - Elegantes Design mit Tailwind CSS
+- **CRUD-Operationen** - Erstellen, Lesen, Bearbeiten und Löschen von Posts
+- **Kategorien** - Organisiere Einträge nach Kategorien (Adventure, Relaxation, Culture, Nature)
+- **Status-Management** - Draft oder Published Status für Posts
+- **Bilder-Support** - Cover-Bilder für jeden Eintrag
+- **Lottie-Animationen** - Interaktive Animationen für bessere UX
+- **Post-Details** - Detailansicht für jeden Tagebucheintrag
 
-## Expanding the ESLint configuration
+## Technologien
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 19** - Frontend Framework
+- **Vite** - Build Tool und Dev Server
+- **Tailwind CSS** - Utility-First CSS Framework
+- **React Router** - Client-side Routing
+- **Axios** - HTTP Client für API-Requests
+- **SweetAlert2** - Moderne Alert-Dialoge
+- **Lottie React** - Lottie-Animationen für React
+- **React Icons** - Icon-Bibliothek
+
+## Entwickelt von
+
+Parween Ahmad

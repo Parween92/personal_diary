@@ -47,68 +47,81 @@ function PostCard({ post, onDeleteSuccess }) {
 
   return (
     <div
-      className="mt-4 text-white p-4 rounded-lg relative flex flex-col justify-between"
-      style={{
-        background:
-          "linear-gradient(to right, rgba(168, 85, 247, 0.7), rgba(59, 130, 246, 0.7))",
-      }}
+      className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all 
+    duration-300 overflow-hidden border border-gray-100 w-full max-w-sm mx-auto sm:max-w-none"
     >
-      <div key={post.id} className="flex flex-wrap content-between gap-3">
-        <h1 className="w-[70%] text-xl font-medium italic text-text ">
-          {post.title}
-        </h1>
-        <h2 className="text-l font-bold text-accent flex items-center gap-1">
-          <span>{post.author},</span>
-          <span>
-            📋Post is <strong>{post.status}</strong>
-          </span>
-        </h2>
-
-        <p className=" mb-2 text-sm font-normal text-text ">{post.content}</p>
-        <p className="text-sm text-accent">
-          Category:{" "}
-          {post.category ? (
-            <>
-              {categoryIcons[post.category] || "❓"} {post.category}
-            </>
-          ) : (
-            "No category"
-          )}
-        </p>
+      {/* Image Section */}
+      <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden">
         <img
           src={post.cover}
           alt={post.title}
-          className="text-l font-medium text-text w-full h-40 object-cover rounded mb-3"
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 
-      <div className="flex gap-8 mt-4 justify-between">
+        {/* Edit Button */}
         <button
-          onClick={goToDetails}
-          className="after:block after:h-[2px] after:w-0 after:bg-accent 
-                    after:transition-all after:duration-300 hover:after:w-full
-                    hover:text-accent text-text px-3 py-1 rounded"
+          onClick={goToEdit}
+          className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-blue-500  
+          flex items-center gap-2 font-bold 
+                    bg-primary text-white  px-3 py-1 rounded-full transition-all duration-200 hover:scale-110"
+          aria-label="Edit post"
         >
-          See more details ➤
-        </button>
-
-        <button
-          onClick={handleDelete}
-          className="flex items-center gap-2 bg-[var(--primary)] hover:bg-[var(--secondary)]
-                    text-white px-4 py-2 rounded font-bold"
-        >
-          <MdDeleteForever size={20} />
-          Delete
+          <FiEdit size={16} />
         </button>
       </div>
-      <button
-        onClick={goToEdit}
-        className="hover:bg-hover flex items-center gap-2 font-bold pointer-events-auto
-                  bg-primary text-white px-3 py-1 rounded absolute right-4 "
-      >
-        <FiEdit />
-        Edit
-      </button>
+
+      <div className="p-4 sm:p-5 md:p-6 space-y-3">
+        <div className="space-y-2">
+          <h1 className="text-lg sm:text-xl font-bold text-gray-600 line-clamp-2 transition-colors">
+            {post.title}
+          </h1>
+
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-purple-600 font-medium">{post.author}</span>
+            <span className="text-gray-600">•</span>
+            <span
+              className={`px-2 py-1 rounded-full text-xs font-medium ${
+                post.status === "published"
+                  ? "bg-[#3b82f6] text-white"
+                  : "bg-[#3b82f6] text-white"
+              }`}
+            >
+              {post.status}
+            </span>
+          </div>
+        </div>
+
+        <p className="text-gray-800 text-sm sm:text-base line-clamp-3 leading-relaxed">
+          {post.content}
+        </p>
+
+        <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
+          <span className="text-lg">
+            {categoryIcons[post.category] || "❓"}
+          </span>
+          <span>{post.category || "No category"}</span>
+        </div>
+
+        <div className="flex gap-4 pt-4 border-t border-gray-100">
+          <button
+            onClick={goToDetails}
+            className="flex items-center justify-center gap-2 bg-[var(--secondary)] hover:bg-[var(--primary)]
+                      text-white px-4 py-2 rounded font-bold transition-colors duration-200"
+          >
+            See more details ➤
+          </button>
+
+          <button
+            onClick={handleDelete}
+            className="flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--secondary)]
+                      text-white px-4 py-2 rounded font-bold transition-colors duration-200"
+          >
+            <MdDeleteForever size={18} />
+            Delete
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
